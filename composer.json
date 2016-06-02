@@ -1,0 +1,24 @@
+{
+    "name": "userfrosting/session",
+    "type": "library",
+    "description": "Uniform interface for storing sessions in a variety of mediums, based on illuminate/session",
+    "keywords": ["userfrosting", "session"],
+    "homepage": "https://github.com/userfrosting/session",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Alexander Weissman",
+            "homepage": "https://alexanderweissman.com"
+        }
+    ],
+    "require": {
+        "illuminate/session": "5.2.*",
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Session\\": "Session"
+        }
+    },
+    "minimum-stability" : "dev"
+}
