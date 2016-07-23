@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * A wrapper for $_SESSION that can be used with a variety of different session handlers, based on illuminate/session
+ *
+ * @package userfrosting/session 
+ * @author  Alexander Weissman
+ * @license MIT
+ */
 namespace UserFrosting\Session;
 
 use ArrayAccess;
@@ -7,8 +14,7 @@ use Illuminate\Support\Arr;
 use SessionHandlerInterface;
 
 class Session implements ArrayAccess
-{
-    
+{ 
     /*
      * Create the session wrapper.
      *
