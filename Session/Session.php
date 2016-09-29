@@ -24,18 +24,26 @@ class Session implements ArrayAccess
     public function __construct(SessionHandlerInterface $handler = null, array $config = [])
     {
         if (session_status() == PHP_SESSION_NONE) {
-            if ($handler)           
+            if ($handler)
                 session_set_save_handler($handler, true);
-            
+
             if (isset($config['cache_limiter']))
                 session_cache_limiter($config['cache_limiter']);
 
             if (isset($config['cache_expire']))
                 session_cache_expire($config['cache_expire']);
-                
+ 
             if (isset($config['name']))
                 session_name($config['name']);
-            
+        }
+    }
+    
+    /**
+     * Start the session.
+     */
+    public function start()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
     }

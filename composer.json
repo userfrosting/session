@@ -20,5 +20,10 @@
             "UserFrosting\\Session\\": "Session"
         }
     },
+    "extra": {
+        "branch-alias": {
+            "dev-dev": "1.0.x-dev"
+        }
+    },
     "minimum-stability" : "dev"
 }
