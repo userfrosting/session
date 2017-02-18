@@ -12,12 +12,17 @@
         }
     ],
     "require": {
-        "illuminate/session": "5.2.*",
+        "illuminate/session": "^5.3.23",
         "php": ">=5.5.9"
     },
     "autoload": {
         "psr-4": {
             "UserFrosting\\Session\\": "Session"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-dev": "1.0.x-dev"
         }
     },
     "minimum-stability" : "dev"

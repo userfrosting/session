@@ -11,8 +11,11 @@ use UserFrosting\Session\Session;
 $fs = new FileSystem;
 $handler = new FileSessionHandler($fs, \UserFrosting\APP_DIR . "/sessions");
 
-// Creates a new wrapper for $_SESSION and starts the session
+// Creates a new wrapper for $_SESSION
 $session = new Session($handler, $config['session']);
+
+// Starts the session
+$session->start();
 
 // Set some values
 $session['contacts.housekeeper.name']; = 'Alex "the man" Weissman';
