@@ -3,18 +3,26 @@
 /**
  * A wrapper for $_SESSION that can be used with a variety of different session handlers, based on illuminate/session
  *
- * @package userfrosting/session 
+ * @package userfrosting/session
  * @author  Alexander Weissman
  * @license MIT
  */
 namespace UserFrosting\Session;
 
 use ArrayAccess;
+use Illuminate\Session\ExistenceAwareInterface;
 use Illuminate\Support\Arr;
 use SessionHandlerInterface;
 
 class Session implements ArrayAccess
-{ 
+{
+    /**
+     * The session handler implementation.
+     *
+     * @var \SessionHandlerInterface
+     */
+    protected $handler;
+
     /*
      * Create the session wrapper.
      *
@@ -23,21 +31,27 @@ class Session implements ArrayAccess
      */
     public function __construct(SessionHandlerInterface $handler = null, array $config = [])
     {
+        $this->handler = $handler;
+
         if (session_status() == PHP_SESSION_NONE) {
-            if ($handler)
+            if ($handler) {
                 session_set_save_handler($handler, true);
+            }
 
-            if (isset($config['cache_limiter']))
+            if (isset($config['cache_limiter'])) {
                 session_cache_limiter($config['cache_limiter']);
+            }
 
-            if (isset($config['cache_expire']))
+            if (isset($config['cache_expire'])) {
                 session_cache_expire($config['cache_expire']);
- 
-            if (isset($config['name']))
+            }
+
+            if (isset($config['name'])) {
                 session_name($config['name']);
+            }
         }
     }
-    
+
     /**
      * Start the session.
      */
@@ -47,7 +61,7 @@ class Session implements ArrayAccess
             session_start();
         }
     }
-    
+
     /**
      * Destroy the current session, and unset all values in memory.  Destroy the session cookie as well to remove all traces client-side.
      *
@@ -55,8 +69,8 @@ class Session implements ArrayAccess
      */
     public function destroy($destroyCookie = true)
     {
-        session_unset();   
-        
+        session_unset();
+
         // If it's desired to kill the session, also delete the session cookie.
         // Note: This will destroy the session, and not just the session data!
         if ($destroyCookie && ini_get("session.use_cookies")) {
@@ -66,20 +80,22 @@ class Session implements ArrayAccess
                 $params["secure"], $params["httponly"]
             );
         }
-         
+
         session_destroy();
     }
-    
+
     /**
      * Regenerate the session id.  For example, when logging someone in, you should regenerate the session to prevent session fixation attacks.
      *
      * @param bool $deleteOldSession Set to true when you are logging someone in.
-     */    
-    public function regenerateId( $deleteOldSession = false )
+     */
+    public function regenerateId($deleteOldSession = false)
     {
         session_regenerate_id($deleteOldSession);
+
+        $this->setExists(false);
     }
-    
+
     /**
      * Determine if the given session value exists.
      *
@@ -118,6 +134,19 @@ class Session implements ArrayAccess
             }
         } else {
             Arr::set($_SESSION, $key, $value);
+        }
+    }
+
+    /**
+     * Set the existence of the session on the handler if applicable.
+     *
+     * @param  bool  $value
+     * @return void
+     */
+    public function setExists($value)
+    {
+        if ($this->handler instanceof ExistenceAwareInterface) {
+            $this->handler->setExists($value);
         }
     }
 
