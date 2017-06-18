@@ -1,4 +1,4 @@
-# Sessions module for UserFrosting
+# Sessions module for UserFrosting 4.1
 
 ## Example usage:
 

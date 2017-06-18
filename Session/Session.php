@@ -1,11 +1,9 @@
 <?php
-
 /**
- * A wrapper for $_SESSION that can be used with a variety of different session handlers, based on illuminate/session
+ * UserFrosting (http://www.userfrosting.com)
  *
- * @package userfrosting/session
- * @author  Alexander Weissman
- * @license MIT
+ * @link      https://github.com/userfrosting/session
+ * @license   https://github.com/userfrosting/UserFrosting/blob/master/LICENSE.md (MIT License)
  */
 namespace UserFrosting\Session;
 
@@ -14,6 +12,11 @@ use Illuminate\Session\ExistenceAwareInterface;
 use Illuminate\Support\Arr;
 use SessionHandlerInterface;
 
+/**
+ * A wrapper for $_SESSION that can be used with a variety of different session handlers, based on illuminate/session
+ *
+ * @author Alexander Weissman (https://alexanderweissman.com)
+ */
 class Session implements ArrayAccess
 {
     /**
