@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "UserFrosting\\Session\\": "Session"
+            "UserFrosting\\Session\\": "src"
         }
     }
 }
