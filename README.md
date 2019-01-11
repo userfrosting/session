@@ -1,4 +1,12 @@
-# Sessions module for UserFrosting 4.1
+# Sessions module for UserFrosting 4
+
+[![Latest Version](https://img.shields.io/github/release/userfrosting/session.svg)](https://github.com/userfrosting/session/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
+<!-- [![Build Status](https://travis-ci.org/userfrosting/session.svg?branch=master)](https://travis-ci.org/userfrosting/session) -->
+<!-- [![codecov](https://codecov.io/gh/userfrosting/session/branch/master/graph/badge.svg)](https://codecov.io/gh/userfrosting/session) -->
+[![Join the chat at https://chat.userfrosting.com/channel/support](https://demo.rocket.chat/images/join-chat.svg)](https://chat.userfrosting.com/channel/support)
+[![Donate](https://img.shields.io/badge/Open%20Collective-Donate-blue.svg)](https://opencollective.com/userfrosting#backer)
+
 
 ## Example usage:
 
