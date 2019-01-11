@@ -1,10 +1,12 @@
 <?php
 /**
- * UserFrosting (http://www.userfrosting.com)
+ * UserFrosting Session (http://www.userfrosting.com)
  *
  * @link      https://github.com/userfrosting/session
- * @license   https://github.com/userfrosting/UserFrosting/blob/master/LICENSE.md (MIT License)
+ * @copyright Copyright (c) 2013-2019 Alexander Weissman, Louis Charette
+ * @license   https://github.com/userfrosting/session/blob/master/LICENSE.md (MIT License)
  */
+
 namespace UserFrosting\Session;
 
 use ArrayAccess;
@@ -76,11 +78,11 @@ class Session implements ArrayAccess
 
         // If it's desired to kill the session, also delete the session cookie.
         // Note: This will destroy the session, and not just the session data!
-        if ($destroyCookie && ini_get("session.use_cookies")) {
+        if ($destroyCookie && ini_get('session.use_cookies')) {
             $params = session_get_cookie_params();
             setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
+                $params['path'], $params['domain'],
+                $params['secure'], $params['httponly']
             );
         }
 
@@ -102,7 +104,7 @@ class Session implements ArrayAccess
     /**
      * Determine if the given session value exists.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return bool
      */
     public function has($key)
@@ -113,8 +115,8 @@ class Session implements ArrayAccess
     /**
      * Get the specified session value.
      *
-     * @param  string  $key
-     * @param  mixed   $default
+     * @param  string $key
+     * @param  mixed  $default
      * @return mixed
      */
     public function get($key, $default = null)
@@ -125,9 +127,8 @@ class Session implements ArrayAccess
     /**
      * Set a given session value.
      *
-     * @param  array|string  $key
-     * @param  mixed   $value
-     * @return void
+     * @param array|string $key
+     * @param mixed        $value
      */
     public function set($key, $value = null)
     {
@@ -143,8 +144,7 @@ class Session implements ArrayAccess
     /**
      * Set the existence of the session on the handler if applicable.
      *
-     * @param  bool  $value
-     * @return void
+     * @param bool $value
      */
     public function setExists($value)
     {
@@ -156,9 +156,8 @@ class Session implements ArrayAccess
     /**
      * Prepend a value onto an array session value.
      *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @return void
+     * @param string $key
+     * @param mixed  $value
      */
     public function prepend($key, $value)
     {
@@ -172,9 +171,8 @@ class Session implements ArrayAccess
     /**
      * Push a value onto an array session value.
      *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @return void
+     * @param string $key
+     * @param mixed  $value
      */
     public function push($key, $value)
     {
@@ -198,7 +196,7 @@ class Session implements ArrayAccess
     /**
      * Determine if the given session option exists.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return bool
      */
     public function offsetExists($key)
@@ -209,7 +207,7 @@ class Session implements ArrayAccess
     /**
      * Get a session option.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return mixed
      */
     public function offsetGet($key)
@@ -220,9 +218,8 @@ class Session implements ArrayAccess
     /**
      * Set a session option.
      *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @return void
+     * @param string $key
+     * @param mixed  $value
      */
     public function offsetSet($key, $value)
     {
@@ -232,8 +229,7 @@ class Session implements ArrayAccess
     /**
      * Unset a session option.
      *
-     * @param  string  $key
-     * @return void
+     * @param string $key
      */
     public function offsetUnset($key)
     {
