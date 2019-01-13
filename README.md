@@ -46,3 +46,7 @@ print_r($session->all());
 $session->destroy();
 
 ```
+
+## [Style Guide](STYLE-GUIDE.md)
+
+<!-- ## [Testing](RUNNING_TESTS.md) -->
