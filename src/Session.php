@@ -16,7 +16,7 @@ use Illuminate\Support\Arr;
 use SessionHandlerInterface;
 
 /**
- * A wrapper for $_SESSION that can be used with a variety of different session handlers, based on illuminate/session
+ * A wrapper for $_SESSION that can be used with a variety of different session handlers, based on illuminate/session.
  *
  * @author Alexander Weissman (https://alexanderweissman.com)
  */
@@ -29,10 +29,11 @@ class Session implements ArrayAccess
      */
     protected $handler;
 
-    /*
+    /**
      * Create the session wrapper.
      *
      * @param SessionHandlerInterface $handler
+     *
      * @param array $config
      */
     public function __construct(SessionHandlerInterface $handler = null, array $config = [])
@@ -105,7 +106,8 @@ class Session implements ArrayAccess
     /**
      * Determine if the given session value exists.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return bool
      */
     public function has($key)
@@ -116,8 +118,9 @@ class Session implements ArrayAccess
     /**
      * Get the specified session value.
      *
-     * @param  string $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, $default = null)
@@ -197,7 +200,8 @@ class Session implements ArrayAccess
     /**
      * Determine if the given session option exists.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return bool
      */
     public function offsetExists($key)
@@ -208,7 +212,8 @@ class Session implements ArrayAccess
     /**
      * Get a session option.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function offsetGet($key)
