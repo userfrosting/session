@@ -1,5 +1,6 @@
 <?php
-/**
+
+/*
  * UserFrosting Session (http://www.userfrosting.com)
  *
  * @link      https://github.com/userfrosting/session
