@@ -12,28 +12,28 @@ namespace UserFrosting\Session\Tests;
 
 use Illuminate\Session\ExistenceAwareInterface;
 use PHPUnit\Framework\TestCase;
-use UserFrosting\Session\Session;
 use SessionHandlerInterface;
+use UserFrosting\Session\Session;
 
 class SessionTest extends TestCase
 {
     /**
-     * @var bool|string $cacheLimiter
+     * @var bool|string
      */
     protected $cacheLimiter = false;
 
     /**
-     * @var int $cacheExpire
+     * @var int
      */
     protected $cacheExpire = 180;
 
     /**
-     * @var string $sessionName
+     * @var string
      */
     protected $sessionName = 'sessionTests';
 
     /**
-     * @var NullSessionHandlerStub $handler
+     * @var NullSessionHandlerStub
      */
     protected $handler;
 
@@ -43,7 +43,7 @@ class SessionTest extends TestCase
     }
 
     /**
-     * Test constructor
+     * Test constructor.
      *
      * @return Session
      */
@@ -266,7 +266,7 @@ class SessionTest extends TestCase
 }
 
 /**
- * Stub Session Handler
+ * Stub Session Handler.
  */
 class NullSessionHandlerStub implements SessionHandlerInterface
 {
