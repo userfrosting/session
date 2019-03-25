@@ -55,6 +55,10 @@ class Session implements ArrayAccess
             if (isset($config['name'])) {
                 session_name($config['name']);
             }
+
+            if (isset($config['cookie_parameters'])) {
+                session_set_cookie_params($config['cookie_parameters']);
+            }
         }
     }
 
