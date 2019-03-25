@@ -18,21 +18,6 @@ use UserFrosting\Session\Session;
 class SessionTest extends TestCase
 {
     /**
-     * @var bool|string
-     */
-    protected $cacheLimiter = false;
-
-    /**
-     * @var int
-     */
-    protected $cacheExpire = 180;
-
-    /**
-     * @var string
-     */
-    protected $sessionName = 'sessionTests';
-
-    /**
      * @var NullSessionHandlerStub
      */
     protected $handler;
@@ -258,9 +243,10 @@ class SessionTest extends TestCase
     protected function sessionConfig()
     {
         return [
-            'cache_limiter' => $this->cacheLimiter,
-            'cache_expire'  => $this->cacheExpire,
-            'name'          => $this->sessionName,
+            'cache_limiter'     => false,
+            'cache_expire'      => 180,
+            'name'              => 'sessionTests',
+            'cookie_parameters' => 180,
         ];
     }
 }
