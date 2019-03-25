@@ -25,22 +25,21 @@ class Session implements ArrayAccess
     /**
      * The session handler implementation.
      *
-     * @var \SessionHandlerInterface
+     * @var SessionHandlerInterface
      */
     protected $handler;
 
     /**
      * Create the session wrapper.
      *
-     * @param SessionHandlerInterface $handler
-     *
-     * @param array $config
+     * @param SessionHandlerInterface|null $handler
+     * @param array                        $config
      */
     public function __construct(SessionHandlerInterface $handler = null, array $config = [])
     {
         $this->handler = $handler;
 
-        if (session_status() == PHP_SESSION_NONE) {
+        if ($this->status() == PHP_SESSION_NONE) {
             if ($handler) {
                 session_set_save_handler($handler, true);
             }
@@ -60,11 +59,21 @@ class Session implements ArrayAccess
     }
 
     /**
+     * Returns the current session status.
+     *
+     * @return int PHP_SESSION_DISABLED | PHP_SESSION_NONE | PHP_SESSION_ACTIVE
+     */
+    public function status()
+    {
+        return session_status();
+    }
+
+    /**
      * Start the session.
      */
     public function start()
     {
-        if (session_status() == PHP_SESSION_NONE) {
+        if ($this->status() == PHP_SESSION_NONE) {
             session_start();
         }
     }
@@ -76,6 +85,10 @@ class Session implements ArrayAccess
      */
     public function destroy($destroyCookie = true)
     {
+        if ($this->status() == PHP_SESSION_NONE) {
+            return;
+        }
+
         session_unset();
 
         // If it's desired to kill the session, also delete the session cookie.
@@ -101,6 +114,16 @@ class Session implements ArrayAccess
         session_regenerate_id($deleteOldSession);
 
         $this->setExists(false);
+    }
+
+    /**
+     * Get the current session id.
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return session_id();
     }
 
     /**
