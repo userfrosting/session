@@ -1,5 +1,6 @@
 <?php
-/**
+
+/*
  * UserFrosting Session (http://www.userfrosting.com)
  *
  * @link      https://github.com/userfrosting/session
@@ -15,7 +16,7 @@ use Illuminate\Support\Arr;
 use SessionHandlerInterface;
 
 /**
- * A wrapper for $_SESSION that can be used with a variety of different session handlers, based on illuminate/session
+ * A wrapper for $_SESSION that can be used with a variety of different session handlers, based on illuminate/session.
  *
  * @author Alexander Weissman (https://alexanderweissman.com)
  */
@@ -24,21 +25,21 @@ class Session implements ArrayAccess
     /**
      * The session handler implementation.
      *
-     * @var \SessionHandlerInterface
+     * @var SessionHandlerInterface
      */
     protected $handler;
 
-    /*
+    /**
      * Create the session wrapper.
      *
-     * @param SessionHandlerInterface $handler
-     * @param array $config
+     * @param SessionHandlerInterface|null $handler
+     * @param array                        $config
      */
     public function __construct(SessionHandlerInterface $handler = null, array $config = [])
     {
         $this->handler = $handler;
 
-        if (session_status() == PHP_SESSION_NONE) {
+        if ($this->status() == PHP_SESSION_NONE) {
             if ($handler) {
                 session_set_save_handler($handler, true);
             }
@@ -62,11 +63,21 @@ class Session implements ArrayAccess
     }
 
     /**
+     * Returns the current session status.
+     *
+     * @return int PHP_SESSION_DISABLED | PHP_SESSION_NONE | PHP_SESSION_ACTIVE
+     */
+    public function status()
+    {
+        return session_status();
+    }
+
+    /**
      * Start the session.
      */
     public function start()
     {
-        if (session_status() == PHP_SESSION_NONE) {
+        if ($this->status() == PHP_SESSION_NONE) {
             session_start();
         }
     }
@@ -78,6 +89,10 @@ class Session implements ArrayAccess
      */
     public function destroy($destroyCookie = true)
     {
+        if ($this->status() == PHP_SESSION_NONE) {
+            return;
+        }
+
         session_unset();
 
         // If it's desired to kill the session, also delete the session cookie.
@@ -106,9 +121,20 @@ class Session implements ArrayAccess
     }
 
     /**
+     * Get the current session id.
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return session_id();
+    }
+
+    /**
      * Determine if the given session value exists.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return bool
      */
     public function has($key)
@@ -119,8 +145,9 @@ class Session implements ArrayAccess
     /**
      * Get the specified session value.
      *
-     * @param  string $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, $default = null)
@@ -200,7 +227,8 @@ class Session implements ArrayAccess
     /**
      * Determine if the given session option exists.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return bool
      */
     public function offsetExists($key)
@@ -211,7 +239,8 @@ class Session implements ArrayAccess
     /**
      * Get a session option.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function offsetGet($key)
