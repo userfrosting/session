@@ -45,6 +45,16 @@ class SessionTest extends TestCase
      *
      * @param Session $session
      */
+    public function testGetHandler(Session $session)
+    {
+        $this->assertEquals($this->handler, $session->getHandler());
+    }
+
+    /**
+     * @depends testConstructor
+     *
+     * @param Session $session
+     */
     public function testSessionStart(Session $session)
     {
         $this->assertSame(PHP_SESSION_NONE, $session->status());

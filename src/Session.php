@@ -268,4 +268,12 @@ class Session implements ArrayAccess
     {
         $this->set($key, null);
     }
+
+    /**
+     * @return SessionHandlerInterface
+     */
+    public function getHandler()
+    {
+        return $this->handler;
+    }
 }
