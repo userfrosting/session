@@ -22,7 +22,7 @@ class SessionTest extends TestCase
      */
     protected $handler;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->handler = new NullSessionHandlerStub();
     }
