@@ -40,6 +40,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 
 [#4]: https://github.com/userfrosting/session/pull/4
+[4.4.1]: https://github.com/userfrosting/session/compare/4.4.0...4.4.1
 [4.4.0]: https://github.com/userfrosting/session/compare/4.3.0...4.4.0
 [4.3.0]: https://github.com/userfrosting/session/compare/4.2.2...4.3.0
 [4.2.2]: https://github.com/userfrosting/session/compare/4.2.1...4.2.2
